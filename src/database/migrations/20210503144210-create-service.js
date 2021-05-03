@@ -1,0 +1,50 @@
+'use strict';
+module.exports = {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable('Services', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
+      student_id: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'student',
+          key: 'id',
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+      },
+      user_id: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'user',
+          key: 'id',
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'SET NULL',
+      },
+      operation: {
+        type: Sequelize.STRING,
+      },
+      description: {
+        type: Sequelize.STRING,
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+    });
+  },
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable('Services');
+  },
+};
