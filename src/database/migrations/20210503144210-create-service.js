@@ -25,8 +25,8 @@ module.exports = {
           model: 'user',
           key: 'id',
         },
-        onDelete: 'SET NULL',
-        onUpdate: 'SET NULL',
+        onDelete: 'NO ACTION',
+        onUpdate: 'CASCADE',
       },
       operation: {
         type: Sequelize.STRING,

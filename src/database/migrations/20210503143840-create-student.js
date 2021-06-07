@@ -30,7 +30,7 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
-      fone: {
+      phone: {
         type: Sequelize.STRING,
         allowNull: false,
       },
