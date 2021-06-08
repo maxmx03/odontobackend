@@ -12,6 +12,7 @@ class Student extends Model {
         cpf: DataTypes.STRING,
         phone: DataTypes.STRING,
         shift: DataTypes.STRING,
+        qtPackage: DataTypes.SMALLINT
       },
       {
         sequelize,

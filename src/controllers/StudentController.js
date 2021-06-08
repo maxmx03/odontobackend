@@ -1,24 +1,28 @@
-const User = require('../models/User');
+const Student = require('../models/Student');
 const { hashPassword } = require('../utils/encrypt');
 const { SUCCESS, SERVER_ERROR } = require('../constants/code');
 
-class UserController {
+class StudentController {
   static getAll(req, res) {
-    User.findAll({
+    Student.findAll({
       attributes: [
         'id',
         'firstName',
         'lastName',
         'email',
-        'type',
+        'password',
+        'cpf',
+        'phone',
+        'shift',
+        'qtPackage',
         'createdAt',
         'updatedAt',
       ],
     })
-      .then((users) => {
+      .then((students) => {
         res.status(SUCCESS.STATUS).json({
+          students,
           msg: SUCCESS.MSG,
-          users: users,
         });
       })
       .catch(() => {
@@ -34,17 +38,21 @@ class UserController {
       lastName,
       email,
       password: passwordEntry,
-      type,
-    } = req.user;
+      cpf,
+      phone,
+      shift,
+    } = req.student;
 
     const password = hashPassword(passwordEntry);
 
-    User.create({
+    Student.create({
       firstName,
       lastName,
       email,
       password,
-      type,
+      cpf,
+      phone,
+      shift,
     })
       .then(() => {
         res.status(SUCCESS.STATUS).json({
@@ -52,24 +60,26 @@ class UserController {
         });
       })
       .catch(() => {
-        res.status(SUCCESS.STATUS).json({
-          msg: SUCCESS.MSG,
+        res.status(SERVER_ERROR.STATUS).json({
+          msg: SERVER_ERROR.MSG,
         });
       });
   }
 
   static updateProfile(req, res) {
-    const { firstName, lastName, type, userId } = req.user;
+    const { firstName, lastName, shift, cpf, phone, studentId } = req.student;
 
-    User.update(
+    Student.update(
       {
         firstName,
         lastName,
-        type,
+        shift,
+        cpf,
+        phone,
       },
       {
         where: {
-          id: userId,
+          id: studentId,
         },
       }
     )
@@ -86,15 +96,15 @@ class UserController {
   }
 
   static updateEmail(req, res) {
-    const { email, userId } = req.user;
+    const { email, studentId } = req.student;
 
-    User.update(
+    Student.update(
       {
         email,
       },
       {
         where: {
-          id: userId,
+          id: studentId,
         },
       }
     )
@@ -111,13 +121,13 @@ class UserController {
   }
 
   static updatePassword(req, res) {
-    const { password, userId } = req.user;
+    const { password, studentId } = req.student;
 
-    User.update(
+    Student.update(
       { password },
       {
         where: {
-          id: userId,
+          id: studentId,
         },
       }
     )
@@ -134,11 +144,11 @@ class UserController {
   }
 
   static delete(req, res) {
-    const { userId } = req.user;
+    const { studentId } = req.student;
 
-    User.destroy({
+    Student.destroy({
       where: {
-        id: userId,
+        id: studentId,
       },
     })
       .then(() => {
@@ -154,4 +164,4 @@ class UserController {
   }
 }
 
-module.exports = UserController;
+module.exports = StudentController;
