@@ -1,26 +1,38 @@
-const Student = require('../models/Student');
-const { hashPassword } = require('../utils/encrypt');
+const Package = require('../models/Package');
 const { SUCCESS, SERVER_ERROR } = require('../constants/code');
+const { Sequelize } = require('sequelize/types');
 
-class StudentController {
+class PackageController {
   static getAll(req, res) {
-    Student.findAll({
+    Package.findAll({
       attributes: [
         'id',
-        'firstName',
-        'lastName',
-        'email',
-        'password',
-        'cpf',
-        'phone',
-        'shift',
+        'student_id',
+        'description',
+        'status',
+        'code',
+        'validity',
+        [Sequelize.fn('COUNT', Sequelize.col('student_id'), 'studentCount')],
         'createdAt',
         'updatedAt',
       ],
+      include: {
+        association: 'students',
+        attributes: [
+          'id',
+          'firstName',
+          'lastName',
+          'email',
+          'cpf',
+          'phone',
+          'shift',
+          'createdAt',
+        ],
+      },
     })
-      .then((students) => {
+      .then((packages) => {
         res.status(SUCCESS.STATUS).json({
-          students,
+          packages,
           msg: SUCCESS.MSG,
         });
       })
@@ -32,26 +44,14 @@ class StudentController {
   }
 
   static create(req, res) {
-    const {
-      firstName,
-      lastName,
-      email,
-      password: passwordEntry,
-      cpf,
-      phone,
-      shift,
-    } = req.student;
+    const { studentId, description, validity, status, code } = req.package;
 
-    const password = hashPassword(passwordEntry);
-
-    Student.create({
-      firstName,
-      lastName,
-      email,
-      password,
-      cpf,
-      phone,
-      shift,
+    Package.create({
+      student_id: studentId,
+      description,
+      validity,
+      status,
+      code,
     })
       .then(() => {
         res.status(SUCCESS.STATUS).json({
@@ -66,19 +66,17 @@ class StudentController {
   }
 
   static updateProfile(req, res) {
-    const { firstName, lastName, shift, cpf, phone, studentId } = req.student;
+    const { packageId, description, validity, status } = req.package;
 
-    Student.update(
+    Package.update(
       {
-        firstName,
-        lastName,
-        shift,
-        cpf,
-        phone,
+        description,
+        validity,
+        status,
       },
       {
         where: {
-          id: studentId,
+          id: packageId,
         },
       }
     )
@@ -94,39 +92,16 @@ class StudentController {
       });
   }
 
-  static updateEmail(req, res) {
-    const { email, studentId } = req.student;
+  static updateCode(req, res) {
+    const { code, packageId } = req.package;
 
-    Student.update(
+    Package.update(
       {
-        email,
+        code,
       },
       {
         where: {
-          id: studentId,
-        },
-      }
-    )
-      .then(() => {
-        res.status(SUCCESS.STATUS).json({
-          msg: SUCCESS.MSG,
-        });
-      })
-      .catch(() => {
-        res.status(SERVER_ERROR.STATUS).json({
-          msg: SERVER_ERROR.MSG,
-        });
-      });
-  }
-
-  static updatePassword(req, res) {
-    const { password, studentId } = req.student;
-
-    Student.update(
-      { password },
-      {
-        where: {
-          id: studentId,
+          id: packageId,
         },
       }
     )
@@ -143,11 +118,11 @@ class StudentController {
   }
 
   static delete(req, res) {
-    const { studentId } = req.student;
+    const { packageId } = req.package;
 
-    Student.destroy({
+    Package.destroy({
       where: {
-        id: studentId,
+        id: packageId,
       },
     })
       .then(() => {
@@ -163,4 +138,4 @@ class StudentController {
   }
 }
 
-module.exports = StudentController;
+module.exports = PackageController;

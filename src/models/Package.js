@@ -3,7 +3,7 @@ const { Model, DataTypes } = require('sequelize');
 
 class Package extends Model {
   static init(sequelize) {
-    Package.init(
+    super.init(
       {
         code: DataTypes.STRING,
         description: DataTypes.STRING,

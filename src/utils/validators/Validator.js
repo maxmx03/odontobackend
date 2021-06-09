@@ -21,6 +21,14 @@ class Validator {
     return /admin|user/.test(value);
   }
 
+  static isStatus(value) {
+    return /stored|withdrawn/.test(value);
+  }
+
+  static isDate(value) {
+    return validator.isDate(value);
+  }
+
   static isCPF(cpf) {
     cpf = cpf.replace(/[^\d]+/g, '');
     if (cpf == '') return false;

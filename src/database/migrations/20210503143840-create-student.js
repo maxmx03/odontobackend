@@ -38,10 +38,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      qtPackage: {
-        type: Sequelize.SMALLINT,
-        allowNull: true,
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

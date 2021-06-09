@@ -2,20 +2,24 @@
 
 const Sequelize = require('sequelize');
 
-const config = require('../database/config/config.json')[env];
+const env = process.env.NODE_ENV || 'development';
+
+const config = require('../config/config.js')[env];
 const User = require('../models/User');
 const Student = require('../models/Student');
+const Package = require('../models/Package');
 const Service = require('../models/Service');
-
-const env = process.env.NODE_ENV || 'development';
 
 const connection = new Sequelize(config);
 
 User.init(connection);
 Student.init(connection);
+Package.init(connection);
 Service.init(connection);
 
-User.associate(connection.models)
-Student.associate(connection.models)
+User.associate(connection.models);
+Student.associate(connection.models);
+Package.associate(connection.models);
+Service.associate(connection.models);
 
 module.exports = connection;
