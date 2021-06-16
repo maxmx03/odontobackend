@@ -64,7 +64,7 @@ class UserMiddleware {
       userId: Validator.clearHTML(userId),
     };
 
-    if (Validator.isEmail(email) && Validator.isNotEmpty(userId)) {
+    if (Validator.isEmail(user.email) && Validator.isNotEmpty(user.userId)) {
       req.user = user;
 
       return next();

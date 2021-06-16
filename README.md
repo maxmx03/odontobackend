@@ -16,7 +16,9 @@
 - Dracula
 
 # Developers
-- Max Miliano Del Canto Quezada
+- name: Max Miliano
+- email: maxmador15@gmail.com
+- github: https://github.com/maxmx03
 
 # PROJECT STRUCTURE
 - Routes - Routing

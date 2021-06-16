@@ -1,9 +1,9 @@
 const FIND_STUDENTS = '/find/students';
-const CREATE_STUDENT = '/create/student/account';
-const UPDATE_STUDENT_PROFILE = '/update/student/profile';
-const UPDATE_STUDENT_EMAIL = '/update/student/email';
-const UPDATE_STUDENT_PASSWORD = '/update/student/password';
-const DELETE_STUDENT = '/delete/student';
+const CREATE_STUDENT = '/create/account';
+const UPDATE_STUDENT_PROFILE = '/update/profile';
+const UPDATE_STUDENT_EMAIL = '/update/email';
+const UPDATE_STUDENT_PASSWORD = '/update/password';
+const DELETE_STUDENT = '/delete/account/:studentId';
 
 module.exports = {
   FIND_STUDENTS,

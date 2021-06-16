@@ -5,10 +5,6 @@ module.exports = {
     database: 'odontoeasy',
     host: 'localhost',
     dialect: 'postgres',
-    define: {
-      timestamps: true,
-      underscored: true,
-    },
   },
   test: {
     username: 'root',
@@ -16,10 +12,6 @@ module.exports = {
     database: 'odontoeasy_test',
     host: 'localhost',
     dialect: 'postgres',
-    define: {
-      timestamps: true,
-      underscored: true,
-    },
   },
   production: {
     username: 'root',
@@ -27,9 +19,5 @@ module.exports = {
     database: 'database_production',
     host: '127.0.0.1',
     dialect: 'postgres',
-    define: {
-      timestamps: true,
-      underscored: true,
-    },
   },
 };

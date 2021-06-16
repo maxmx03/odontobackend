@@ -4,11 +4,11 @@ const generator = require('../utils/generator/codeGenerator');
 
 class PackageMiddleware {
   static create(req, res, next) {
-    const { studentId, description, validity, status, code } = req.body;
+    const { studentId, description, validity, status } = req.body;
 
     generator.generate();
 
-    const package = {
+    const studentPackage = {
       studentId: Validator.clearHTML(studentId),
       description: Validator.clearHTML(description),
       validity: Validator.clearHTML(validity),
@@ -17,12 +17,12 @@ class PackageMiddleware {
     };
 
     if (
-      Validator.isNotEmpty(package.studentId) &&
-      Validator.isNotEmpty(package.description) &&
-      Validator.isDate(package.validity) &&
-      Validator.isStatus(package.status)
+      Validator.isNotEmpty(studentPackage.studentId) &&
+      Validator.isNotEmpty(studentPackage.description) &&
+      Validator.isDate(studentPackage.validity) &&
+      Validator.isStatus(studentPackage.status)
     ) {
-      req.package = package;
+      req.studentPackage = studentPackage;
 
       return next();
     }
@@ -33,22 +33,24 @@ class PackageMiddleware {
   }
 
   static updateProfile(req, res, next) {
-    const { packageId, description, validity, status } = req.body;
+    const { packageId, studentId, description, validity, status } = req.body;
 
-    const package = {
-      studentId: Validator.clearHTML(packageId),
+    const studentPackage = {
+      packageId: Validator.clearHTML(packageId),
+      studentId: Validator.clearHTML(studentId),
       description: Validator.clearHTML(description),
       validity: Validator.clearHTML(validity),
       status: Validator.clearHTML(status),
     };
 
     if (
-      Validator.isNotEmpty(package.studentId) &&
-      Validator.isNotEmpty(package.description) &&
-      Validator.isDate(package.validity) &&
-      Validator.isStatus(package.status)
+      Validator.isNotEmpty(studentPackage.packageId) &&
+      Validator.isNotEmpty(studentPackage.studentId) &&
+      Validator.isNotEmpty(studentPackage.description) &&
+      Validator.isDate(studentPackage.validity) &&
+      Validator.isStatus(studentPackage.status)
     ) {
-      req.package = package;
+      req.studentPackage = studentPackage;
 
       return next();
     }
@@ -59,15 +61,20 @@ class PackageMiddleware {
   }
 
   static updateCode(req, res, next) {
-    const { packageId, code } = req.body;
+    const { packageId, studentId, code } = req.body;
 
-    const package = {
+    const studentPackage = {
       packageId: Validator.clearHTML(packageId),
+      studentId: Validator.clearHTML(studentId),
       code: Validator.clearHTML(code),
     };
 
-    if (Validator.isNotEmpty(packageId) && Validator.isNotEmpty(code)) {
-      req.package = package;
+    if (
+      Validator.isNotEmpty(studentPackage.packageId) &&
+      Validator.isNotEmpty(studentPackage.studentId) &&
+      Validator.isNotEmpty(studentPackage.code)
+    ) {
+      req.studentPackage = studentPackage;
 
       return next();
     }
@@ -78,14 +85,18 @@ class PackageMiddleware {
   }
 
   static delete(req, res, next) {
-    const { packageId } = req.params;
+    const { packageId, studentId } = req.params;
 
-    const package = {
+    const studentPackage = {
       packageId: Validator.clearHTML(packageId),
+      studentId: Validator.clearHTML(studentId),
     };
 
-    if (Validator.isNotEmpty(package.packageId)) {
-      req.package = package;
+    if (
+      Validator.isNotEmpty(studentPackage.packageId) &&
+      Validator.isNotEmpty(studentPackage.studentId)
+    ) {
+      req.studentPackage = studentPackage;
 
       return next();
     }

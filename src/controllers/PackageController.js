@@ -1,6 +1,6 @@
 const Package = require('../models/Package');
 const { SUCCESS, SERVER_ERROR } = require('../constants/code');
-const { Sequelize } = require('sequelize/types');
+const { Sequelize } = require('sequelize');
 
 class PackageController {
   static getAll(req, res) {

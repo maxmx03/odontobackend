@@ -52,8 +52,8 @@ class UserController {
         });
       })
       .catch(() => {
-        res.status(SUCCESS.STATUS).json({
-          msg: SUCCESS.MSG,
+        res.status(SERVER_ERROR.STATUS).json({
+          msg: SERVER_ERROR.MSG,
         });
       });
   }

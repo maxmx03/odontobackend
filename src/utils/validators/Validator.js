@@ -14,15 +14,15 @@ class Validator {
   }
 
   static isShift(value) {
-    return /morning|afternoon|night/.test(value);
+    return /^morning$|^afternoon$|^night$/.test(value);
   }
 
   static isType(value) {
-    return /admin|user/.test(value);
+    return /^admin$|^user$/.test(value);
   }
 
   static isStatus(value) {
-    return /stored|withdrawn/.test(value);
+    return /^stored$|^withdrawn$/.test(value);
   }
 
   static isDate(value) {

@@ -1,9 +1,9 @@
 const FIND_USERS = '/find/users';
-const CREATE_USER = '/create/user/account';
-const UPDATE_USER_PROFILE = '/update/user/profile';
-const UPDATE_USER_EMAIL = '/update/user/email';
-const UPDATE_USER_PASSWORD = '/update/user/password';
-const DELETE_USER = '/delete/user/account:userId';
+const CREATE_USER = '/create/account';
+const UPDATE_USER_PROFILE = '/update/profile';
+const UPDATE_USER_EMAIL = '/update/email';
+const UPDATE_USER_PASSWORD = '/update/password';
+const DELETE_USER = '/delete/account/:userId';
 
 module.exports = {
   FIND_USERS,
