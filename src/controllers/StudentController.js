@@ -14,14 +14,16 @@ class StudentController {
         'cpf',
         'phone',
         'shift',
+        'qtPackage',
         'createdAt',
         'updatedAt',
       ],
+      order: [['id', 'ASC']],
     })
       .then((students) => {
         res.status(SUCCESS.STATUS).json({
-          students,
           msg: SUCCESS.MSG,
+          students,
         });
       })
       .catch(() => {

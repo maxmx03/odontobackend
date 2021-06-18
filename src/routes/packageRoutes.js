@@ -9,7 +9,7 @@ const router = Router();
 router.route(packageRoutes.FIND_PACKAGES).get(PackageController.getAll);
 router
   .route(packageRoutes.CREATE_PACKAGE)
-  .get(PackageMiddleware.create, PackageController.create);
+  .post(PackageMiddleware.create, PackageController.create);
 router
   .route(packageRoutes.UPDATE_PACKAGE_CODE)
   .patch(PackageMiddleware.updateCode, PackageController.updateCode);

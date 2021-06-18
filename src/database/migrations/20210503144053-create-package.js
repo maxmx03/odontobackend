@@ -20,6 +20,8 @@ module.exports = {
       },
       code: {
         type: Sequelize.STRING,
+        autoIncrement: true,
+        type: Sequelize.INTEGER,
       },
       description: {
         type: Sequelize.STRING,

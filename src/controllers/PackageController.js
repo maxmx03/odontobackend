@@ -1,6 +1,6 @@
 const Package = require('../models/Package');
+const Student = require('../models/Student');
 const { SUCCESS, SERVER_ERROR } = require('../constants/code');
-const { Sequelize } = require('sequelize');
 
 class PackageController {
   static getAll(req, res) {
@@ -12,7 +12,6 @@ class PackageController {
         'status',
         'code',
         'validity',
-        [Sequelize.fn('COUNT', Sequelize.col('student_id'), 'studentCount')],
         'createdAt',
         'updatedAt',
       ],
@@ -26,14 +25,16 @@ class PackageController {
           'cpf',
           'phone',
           'shift',
+          'qtPackage',
           'createdAt',
         ],
       },
+      order: [['id', 'ASC']],
     })
       .then((packages) => {
         res.status(SUCCESS.STATUS).json({
-          packages,
           msg: SUCCESS.MSG,
+          packages,
         });
       })
       .catch(() => {
@@ -44,29 +45,22 @@ class PackageController {
   }
 
   static create(req, res) {
-    const { studentId, description, validity, status, code } = req.package;
-
-    Package.create({
-      student_id: studentId,
-      description,
-      validity,
-      status,
-      code,
-    })
+    Student.createPackage(req.studentPackage)
       .then(() => {
         res.status(SUCCESS.STATUS).json({
           msg: SUCCESS.MSG,
         });
       })
-      .catch(() => {
+      .catch((err) => {
         res.status(SERVER_ERROR.STATUS).json({
+          err,
           msg: SERVER_ERROR.MSG,
         });
       });
   }
 
   static updateProfile(req, res) {
-    const { packageId, description, validity, status } = req.package;
+    const { packageId, description, validity, status } = req.studentPackage;
 
     Package.update(
       {
@@ -93,7 +87,7 @@ class PackageController {
   }
 
   static updateCode(req, res) {
-    const { code, packageId } = req.package;
+    const { code, packageId } = req.studentPackage;
 
     Package.update(
       {
@@ -118,7 +112,7 @@ class PackageController {
   }
 
   static delete(req, res) {
-    const { packageId } = req.package;
+    const { packageId } = req.studentPackage;
 
     Package.destroy({
       where: {

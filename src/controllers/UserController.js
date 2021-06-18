@@ -14,6 +14,7 @@ class UserController {
         'createdAt',
         'updatedAt',
       ],
+      order: [['id', 'ASC']],
     })
       .then((users) => {
         res.status(SUCCESS.STATUS).json({

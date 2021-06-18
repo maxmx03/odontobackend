@@ -9,8 +9,9 @@ class Validator {
 
   static clearHTML(value) {
     const filter = new RegExp('(<[a-z0-9]+>)|(</[a-z0-9]+>)|([</>])', 'gi');
+    const toFilter = value + '';
 
-    return value.replace(filter, '');
+    return toFilter.replace(filter, '');
   }
 
   static isShift(value) {
@@ -26,7 +27,12 @@ class Validator {
   }
 
   static isDate(value) {
-    return validator.isDate(value);
+    const validate = new RegExp(
+      '[0-9]+[-]+[0-9]+[-]+[0-9]+[A-Z0-9]+[:]+[0-9]+[:]+[0-9]+[-]+[0-9]+[:]+[09]+',
+      'g'
+    );
+
+    return validate.test(value);
   }
 
   static isCPF(cpf) {
@@ -63,7 +69,9 @@ class Validator {
   }
 
   static isEmail(email) {
-    return validator.isEmail(email);
+    const normalizedEmail = validator.normalizeEmail(email);
+
+    return validator.isEmail(normalizedEmail);
   }
 
   static isPassword(password) {

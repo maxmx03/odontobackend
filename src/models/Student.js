@@ -11,6 +11,7 @@ class Student extends Model {
         password: DataTypes.STRING,
         cpf: DataTypes.STRING,
         phone: DataTypes.STRING,
+        qtPackage: DataTypes.SMALLINT,
         shift: DataTypes.STRING,
       },
       {
@@ -28,6 +29,20 @@ class Student extends Model {
     this.belongsToMany(models.User, {
       through: models.Service,
       as: 'services',
+    });
+  }
+
+  static async createPackage({ studentId, description, validity, status }) {
+    const student = await this.findByPk(studentId);
+    const quantity = await student.countPackages();
+    student.qtPackage = quantity + 1;
+    student.save();
+
+    return student.createPackage({
+      student_id: studentId,
+      description,
+      validity,
+      status,
     });
   }
 }
