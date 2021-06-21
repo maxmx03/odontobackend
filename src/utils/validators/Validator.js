@@ -4,7 +4,11 @@ const User = require('../../models/User');
 
 class Validator {
   static isNotEmpty(value) {
-    return !validator.isEmpty(value);
+    if (value === 0) {
+      return true;
+    }
+
+    return !!value;
   }
 
   static clearHTML(value) {
@@ -88,13 +92,7 @@ class Validator {
     );
   }
 
-  static async validateUserAccount(email, password) {
-    const user = await User.findOne({
-      where: {
-        email,
-      },
-    });
-
+  static validateUserAccount(password, user) {
     return bcrypt.compareSync(password, user.password);
   }
 }

@@ -1,8 +1,10 @@
 'use strict';
 
 const Sequelize = require('sequelize');
+const dotenv = require('dotenv');
 
-const env = process.env.NODE_ENV || 'development';
+dotenv.config();
+const env = process.env.API_ENV;
 
 const config = require('../config/config.js')[env];
 const User = require('../models/User');

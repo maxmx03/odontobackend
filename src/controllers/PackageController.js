@@ -51,9 +51,8 @@ class PackageController {
           msg: SUCCESS.MSG,
         });
       })
-      .catch((err) => {
+      .catch(() => {
         res.status(SERVER_ERROR.STATUS).json({
-          err,
           msg: SERVER_ERROR.MSG,
         });
       });
