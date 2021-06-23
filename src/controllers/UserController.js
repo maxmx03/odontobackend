@@ -34,11 +34,11 @@ class UserController {
       firstName,
       lastName,
       email,
-      password: passwordEntry,
+      password: passwordToStore,
       type,
     } = req.user;
 
-    const password = hashPassword(passwordEntry);
+    const password = hashPassword(passwordToStore);
 
     User.create({
       firstName,
@@ -112,7 +112,9 @@ class UserController {
   }
 
   static updatePassword(req, res) {
-    const { password, userId } = req.user;
+    const { password: passwordToUpdate, userId } = req.user;
+
+    const password = hashPassword(passwordToUpdate);
 
     User.update(
       { password },

@@ -8,7 +8,7 @@ const router = Router();
 
 router
   .route(authRoutes.IS_USER_LOGGED)
-  .get(AuthMiddleware.userLogged, AuthController.userLogged);
+  .get(AuthMiddleware.isUserLogged, AuthController.isUserLogged);
 router
   .route(authRoutes.USER_LOGIN)
   .post(AuthMiddleware.loginUser, AuthController.loginUser);

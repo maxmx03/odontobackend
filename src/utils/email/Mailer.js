@@ -2,21 +2,21 @@ const nodemailer = require('nodemailer');
 const moment = require('moment');
 const path = require('path');
 
-const filePath = path.resolve('src', 'assets', 'img', 'odontoeasy.png');
-
-const transport = nodemailer.createTransport({
-  service: 'Hotmail',
-  auth: {
-    user: process.env.MAILER_USER,
-    pass: process.env.MAILER_PASS,
-  },
-  logger: false,
-});
-
-const date = moment().format('L');
+const { SUCCESS, SERVER_ERROR } = require('../../constants/code');
 
 class Mailer {
-  static sendRecoverPassword(email, password) {
+  static async sendRecoverPassword(email, password, { req, res }) {
+    const filePath = path.resolve('src', 'assets', 'img', 'odontoeasy.png');
+    const transport = nodemailer.createTransport({
+      service: 'Hotmail',
+      auth: {
+        user: process.env.MAILER_USER,
+        pass: process.env.MAILER_PASS,
+      },
+      logger: process.env.API_ENV === 'development' ? true : false,
+    });
+    const date = moment().format('L');
+
     const transportMessage = {
       from: process.env.MAILER_USER,
       to: email,
@@ -39,10 +39,16 @@ class Mailer {
 
     transport.sendMail(transportMessage, (err, info) => {
       if (err) {
-        return Promise.reject(err);
+        res.status(SERVER_ERROR.STATUS).json({
+          msg: SERVER_ERROR.MSG,
+        });
+
+        return;
       }
 
-      return Promise.resolve(info);
+      res.status(SUCCESS.STATUS).json({
+        msg: SUCCESS.MSG,
+      });
     });
   }
 }

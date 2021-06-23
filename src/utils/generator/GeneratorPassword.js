@@ -19,7 +19,12 @@ class GeneratorPassword {
       password.push(this.randomNumber(100));
     }
 
-    return hashPassword(password.join(''));
+    const result = {
+      raw: password.join(''),
+      password: hashPassword(password.join('')),
+    };
+
+    return result;
   }
 }
 

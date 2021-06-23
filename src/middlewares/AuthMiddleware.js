@@ -32,10 +32,7 @@ class AuthMiddleware {
       if (Validator.validateUserAccount(auth.password, user)) {
         const token = WebToken.create(user);
 
-        req.auth = {
-          user,
-          token,
-        };
+        req.auth = token;
 
         return next();
       }
@@ -50,35 +47,15 @@ class AuthMiddleware {
     }
   }
 
-  static async userLogged(req, res, next) {
+  static async isUserLogged(req, res, next) {
     try {
       const { authorization } = req.headers;
 
       const token = WebToken.verify(authorization);
 
-      if (!Validator.isNotEmpty(token)) {
-        return res.status(SERVER_ERROR.STATUS).json({
-          msg: SERVER_ERROR.MSG,
-        });
-      }
+      req.auth = token;
 
-      const user = await User.findOne({
-        where: {
-          id: token.userId,
-          email: token.email,
-        },
-        attributes: ['firstName', 'lastName', 'email', 'type'],
-      });
-
-      if (Validator.isNotEmpty(user)) {
-        req.auth = user;
-
-        return next();
-      }
-
-      res.status(SERVER_ERROR.STATUS).json({
-        msg: SERVER_ERROR.MSG,
-      });
+      return next();
     } catch (error) {
       res.status(SERVER_ERROR.STATUS).json({
         msg: SERVER_ERROR.MSG,
@@ -90,13 +67,13 @@ class AuthMiddleware {
     try {
       const { email } = req.body;
 
-      const password = GeneratorPassword.generate();
+      const { password, raw } = GeneratorPassword.generate();
 
       const auth = {
         email: Validator.clearHTML(email),
       };
 
-      if (Validator.isPassword(password) && Validator.isEmail(auth.email)) {
+      if (Validator.isPassword(raw) && Validator.isEmail(auth.email)) {
         User.update(
           {
             password,
@@ -110,7 +87,7 @@ class AuthMiddleware {
 
         req.auth = {
           email: auth.email,
-          password,
+          password: raw,
         };
 
         return next();

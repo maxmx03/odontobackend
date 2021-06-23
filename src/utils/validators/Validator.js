@@ -1,6 +1,5 @@
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
-const User = require('../../models/User');
 
 class Validator {
   static isNotEmpty(value) {

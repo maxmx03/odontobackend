@@ -1,23 +1,28 @@
+const dotenv = require('dotenv');
+
+dotenv.config();
+
 module.exports = {
   development: {
     username: process.env.BD_USERNAME,
     password: process.env.BD_PASSWORD,
-    database: process.env.BD_DATABASE,
+    database: 'odontoeasy_dev',
     host: process.env.BD_HOST,
     dialect: process.env.BD_DIALECT,
   },
   test: {
-    username: 'root',
-    password: 'o5o37prb',
+    username: process.env.BD_USERNAME,
+    password: process.env.BD_PASSWORD,
     database: 'odontoeasy_test',
-    host: 'localhost',
-    dialect: 'postgres',
+    host: process.env.BD_HOST,
+    dialect: process.env.BD_DIALECT,
   },
   production: {
-    username: 'root',
-    password: null,
-    database: 'database_production',
-    host: '127.0.0.1',
-    dialect: 'postgres',
+    username: process.env.BD_USERNAME,
+    password: process.env.BD_PASSWORD,
+    database: 'odontoeasy',
+    host: process.env.BD_HOST,
+    dialect: process.env.BD_DIALECT,
+    logging: false,
   },
 };

@@ -1,12 +1,9 @@
 const jwt = require('jsonwebtoken');
 
-const User = require('../../models/User');
-
-const tokenKey = process.env.TOKEN_KEY;
-
 class WebToken {
-  static create({ id, email }) {
-    return jwt.sign({ userId: id, email }, tokenKey, {
+  static create({ id, email, firstName, lastName, type }) {
+
+    return jwt.sign({ userId: id, email, firstName, lastName, type }, process.env.TOKEN_KEY, {
       expiresIn: '12h',
     });
   }
@@ -14,7 +11,7 @@ class WebToken {
   static verify(t) {
     const token = t.split(' ')[1];
 
-    return jwt.verify(token, tokenKey);
+    return jwt.verify(token, process.env.TOKEN_KEY);
   }
 }
 
