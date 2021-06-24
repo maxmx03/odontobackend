@@ -13,7 +13,7 @@ class Mailer {
         user: process.env.MAILER_USER,
         pass: process.env.MAILER_PASS,
       },
-      logger: process.env.API_ENV === 'development' ? true : false,
+      logger: process.env.NODE_ENV === 'development' ? true : false,
     });
     const date = moment().format('L');
 

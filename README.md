@@ -49,3 +49,7 @@
 
 # learn more at
 https://sequelize.org/master/manual/migrations.html
+
+# TDD
+Tests were done sequentially, so for some tests to work other must be removed.
+For example: To test if a user is logged in we need to login him first, but if we run another test before to verify if the user is being deleted successfully, the test to verify if a user is logged in will fail, because the user doesn't' exist.

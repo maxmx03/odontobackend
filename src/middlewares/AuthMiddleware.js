@@ -63,7 +63,7 @@ class AuthMiddleware {
     }
   }
 
-  static recoverUserPassword(req, res, next) {
+  static async recoverUserPassword(req, res, next) {
     try {
       const { email } = req.body;
 
@@ -74,7 +74,7 @@ class AuthMiddleware {
       };
 
       if (Validator.isPassword(raw) && Validator.isEmail(auth.email)) {
-        User.update(
+        await User.update(
           {
             password,
           },
