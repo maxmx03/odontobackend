@@ -102,6 +102,51 @@ class AuthMiddleware {
       });
     }
   }
+
+  static isAdmin(req, res, next) {
+    try {
+      const { authorization } = req.headers;
+
+      const token = WebToken.verify(authorization);
+
+      if (Validator.isType(token.type) && token.type === 'admin') {
+        req.auth = token;
+
+        return next();
+      }
+
+      res.status(SERVER_ERROR.STATUS).json({
+        msg: SERVER_ERROR.MSG,
+      });
+    } catch (error) {
+      res.status(SERVER_ERROR.STATUS).json({
+        msg: SERVER_ERROR.MSG,
+      });
+    }
+  }
+
+  static isUser(req, res, next) {
+    try {
+      const { authorization } = req.headers;
+
+      const token = WebToken.verify(authorization);
+
+      if (
+        Validator.isType(token.type) &&
+        (token.type === 'user' || token.type === 'admin')
+      ) {
+        return next();
+      }
+
+      res.status(SERVER_ERROR.STATUS).json({
+        msg: SERVER_ERROR.MSG,
+      });
+    } catch (error) {
+      res.status(SERVER_ERROR.STATUS).json({
+        msg: SERVER_ERROR.MSG,
+      });
+    }
+  }
 }
 
 module.exports = AuthMiddleware;

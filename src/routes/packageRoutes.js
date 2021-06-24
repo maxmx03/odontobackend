@@ -3,21 +3,44 @@ const { Router } = require('express');
 const packageRoutes = require('../constants/routes/packageRoutes');
 const PackageController = require('../controllers/PackageController');
 const PackageMiddleware = require('../middlewares/PackageMiddleware');
+const AuthMiddleware = require('../middlewares/AuthMiddleware');
 
 const router = Router();
 
-router.route(packageRoutes.FIND_PACKAGES).get(PackageController.getAll);
+router
+  .route(packageRoutes.FIND_PACKAGES)
+  .get(AuthMiddleware.isUser, PackageController.getAll);
+
 router
   .route(packageRoutes.CREATE_PACKAGE)
-  .post(PackageMiddleware.create, PackageController.create);
+  .post(
+    AuthMiddleware.isUser,
+    PackageMiddleware.create,
+    PackageController.create
+  );
+
 router
   .route(packageRoutes.UPDATE_PACKAGE_CODE)
-  .patch(PackageMiddleware.updateCode, PackageController.updateCode);
+  .patch(
+    AuthMiddleware.isUser,
+    PackageMiddleware.updateCode,
+    PackageController.updateCode
+  );
+
 router
   .route(packageRoutes.UPDATE_PACKAGE_PROFILE)
-  .patch(PackageMiddleware.updateProfile, PackageController.updateProfile);
+  .patch(
+    AuthMiddleware.isUser,
+    PackageMiddleware.updateProfile,
+    PackageController.updateProfile
+  );
+
 router
   .route(packageRoutes.DELETE_PACKAGE)
-  .delete(PackageMiddleware.delete, PackageController.delete);
+  .delete(
+    AuthMiddleware.isUser,
+    PackageMiddleware.delete,
+    PackageController.delete
+  );
 
 module.exports = router;

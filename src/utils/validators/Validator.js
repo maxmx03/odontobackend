@@ -22,7 +22,7 @@ class Validator {
   }
 
   static isType(value) {
-    return /^admin$|^user$/.test(value);
+    return /^admin$|^user$|^disabled$/.test(value);
   }
 
   static isStatus(value) {
