@@ -5,7 +5,7 @@ class Package extends Model {
   static init(sequelize) {
     super.init(
       {
-        code: DataTypes.STRING,
+        code: DataTypes.INTEGER,
         description: DataTypes.STRING,
         status: DataTypes.STRING,
         validity: DataTypes.STRING,

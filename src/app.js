@@ -3,12 +3,11 @@ const helmet = require('helmet');
 const cors = require('cors');
 const compression = require('compression');
 
-require('./src/database');
+require('./database');
 
-const routes = require('./src/routes');
+const routes = require('./routes');
 
 const app = express();
-const port = process.env.PORT || 3000;
 const corsOptions = {
   origin: process.env.CORS_ORIGIN || '*',
   optionsSuccessStatus: 200,
@@ -24,6 +23,4 @@ app.use(express.json());
 
 app.use(routes);
 
-app.listen(port, () => {
-  console.log('listening on port ' + port);
-});
+module.exports = app;

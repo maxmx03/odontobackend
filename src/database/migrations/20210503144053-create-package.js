@@ -19,9 +19,8 @@ module.exports = {
         onUpdate: 'CASCADE',
       },
       code: {
-        type: Sequelize.STRING,
-        autoIncrement: true,
         type: Sequelize.INTEGER,
+        autoIncrement: true,
       },
       description: {
         type: Sequelize.STRING,

@@ -1,6 +1,6 @@
 const WebToken = require('../../../src/utils/token/WebToken');
 
-describe('Testing WebToken class methods', () => {
+describe('JWT Web Token', () => {
   beforeAll(() => {
     const dotenv = require('dotenv');    
     dotenv.config();

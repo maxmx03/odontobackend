@@ -3,7 +3,7 @@ const moment = require('moment');
 const Validator = require('../../../src/utils/validators/Validator');
 const GeneratorPassword = require('../../../src/utils/generator/GeneratorPassword');
 
-describe('Testing Validator class methods', () => {
+describe('Validator', () => {
   it('clearHTML should remove html elements from string, return a string', () => {
     expect(Validator.clearHTML('<p>value</p>')).toBe('value');
   });
