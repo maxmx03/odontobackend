@@ -14,7 +14,7 @@ router
 router
   .route(authRoutes.USER_LOGIN)
   .post(
-    LimiterMiddleware.auth,
+    LimiterMiddleware.auth(),
     AuthMiddleware.loginUser,
     AuthController.loginUser
   );
@@ -22,7 +22,7 @@ router
 router
   .route(authRoutes.RECOVER_PASSWORD)
   .post(
-    LimiterMiddleware.auth,
+    LimiterMiddleware.auth(),
     AuthMiddleware.recoverUserPassword,
     AuthController.recoverUserPassword
   );
