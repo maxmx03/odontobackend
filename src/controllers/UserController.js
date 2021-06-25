@@ -19,7 +19,7 @@ class UserController {
       .then((users) => {
         res.status(SUCCESS.STATUS).json({
           msg: SUCCESS.MSG,
-          users: users,
+          users,
         });
       })
       .catch(() => {
