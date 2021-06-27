@@ -26,10 +26,11 @@ class Student extends Model {
       foreignKey: 'student_id',
       as: 'packages',
     });
-    this.belongsToMany(models.User, {
-      through: models.Service,
-      as: 'services',
-    });
+
+    // this.belongsToMany(models.User, {
+    //   through: models.Service,
+    //   as: 'users',
+    // });
   }
 
   static async createPackage({ studentId, description, validity, status }) {

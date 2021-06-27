@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const { hashPassword } = require('../utils/encrypt');
 const { SUCCESS, SERVER_ERROR } = require('../constants/code');
+const Validator = require('../utils/validators/Validator');
 
 class UserController {
   static getAll(req, res) {
@@ -22,8 +23,9 @@ class UserController {
           users,
         });
       })
-      .catch(() => {
+      .catch((error) => {
         res.status(SERVER_ERROR.STATUS).json({
+          error: Validator.isDevelopmentEnv() ? error : null,
           msg: SERVER_ERROR.MSG,
         });
       });
@@ -52,8 +54,9 @@ class UserController {
           msg: SUCCESS.MSG,
         });
       })
-      .catch(() => {
+      .catch((error) => {
         res.status(SERVER_ERROR.STATUS).json({
+          error: Validator.isDevelopmentEnv() ? error : null,
           msg: SERVER_ERROR.MSG,
         });
       });
@@ -79,8 +82,9 @@ class UserController {
           msg: SUCCESS.MSG,
         });
       })
-      .catch(() => {
+      .catch((error) => {
         res.status(SERVER_ERROR.STATUS).json({
+          error: Validator.isDevelopmentEnv() ? error : null,
           msg: SERVER_ERROR.MSG,
         });
       });
@@ -104,8 +108,9 @@ class UserController {
           msg: SUCCESS.MSG,
         });
       })
-      .catch(() => {
+      .catch((error) => {
         res.status(SERVER_ERROR.STATUS).json({
+          error: Validator.isDevelopmentEnv() ? error : null,
           msg: SERVER_ERROR.MSG,
         });
       });
@@ -129,8 +134,9 @@ class UserController {
           msg: SUCCESS.MSG,
         });
       })
-      .catch(() => {
+      .catch((error) => {
         res.status(SERVER_ERROR.STATUS).json({
+          error: Validator.isDevelopmentEnv() ? error : null,
           msg: SERVER_ERROR.MSG,
         });
       });
@@ -149,8 +155,9 @@ class UserController {
           msg: SUCCESS.MSG,
         });
       })
-      .catch(() => {
+      .catch((error) => {
         res.status(SERVER_ERROR.STATUS).json({
+          error: Validator.isDevelopmentEnv() ? error : null,
           msg: SERVER_ERROR.MSG,
         });
       });

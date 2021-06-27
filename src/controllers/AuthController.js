@@ -12,14 +12,14 @@ class AuthController {
   static isUserLogged(req, res) {
     res.status(SUCCESS.STATUS).json({
       token: req.auth,
-      msg: SUCCESS.MSG
+      msg: SUCCESS.MSG,
     });
   }
 
   static recoverUserPassword(req, res) {
     const { email, password } = req.auth;
 
-    Mailer.sendRecoverPassword(email, password, {req, res});
+    Mailer.sendRecoverPassword(email, password, { req, res });
   }
 }
 

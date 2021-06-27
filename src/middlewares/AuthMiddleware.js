@@ -19,6 +19,7 @@ class AuthMiddleware {
         !Validator.isPassword(auth.password)
       ) {
         return res.status(SERVER_ERROR.STATUS).json({
+          error: Validator.isDevelopmentEnv() ? 'Validator error' : null,
           msg: SERVER_ERROR.MSG,
         });
       }
@@ -38,10 +39,12 @@ class AuthMiddleware {
       }
 
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? 'Validator error' : null,
         msg: SERVER_ERROR.MSG,
       });
     } catch (error) {
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? error : null,
         msg: SERVER_ERROR.MSG,
       });
     }
@@ -58,6 +61,7 @@ class AuthMiddleware {
       return next();
     } catch (error) {
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? error : null,
         msg: SERVER_ERROR.MSG,
       });
     }
@@ -94,10 +98,12 @@ class AuthMiddleware {
       }
 
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? 'Validator error' : null,
         msg: SERVER_ERROR.MSG,
       });
     } catch (error) {
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? error : null,
         msg: SERVER_ERROR.MSG,
       });
     }
@@ -105,6 +111,13 @@ class AuthMiddleware {
 
   static isAdmin(req, res, next) {
     try {
+      if (
+        Validator.isDevelopmentEnv() ||
+        process.env.CREATE_FIRST_USER === 'true'
+      ) {
+        return next();
+      }
+
       const { authorization } = req.headers;
 
       const token = WebToken.verify(authorization);
@@ -116,10 +129,12 @@ class AuthMiddleware {
       }
 
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? 'Validator error' : null,
         msg: SERVER_ERROR.MSG,
       });
     } catch (error) {
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? error : null,
         msg: SERVER_ERROR.MSG,
       });
     }
@@ -127,6 +142,10 @@ class AuthMiddleware {
 
   static isUser(req, res, next) {
     try {
+      if (Validator.isDevelopmentEnv()) {
+        return next();
+      }
+
       const { authorization } = req.headers;
 
       const token = WebToken.verify(authorization);
@@ -139,10 +158,12 @@ class AuthMiddleware {
       }
 
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? 'Validator error' : null,
         msg: SERVER_ERROR.MSG,
       });
     } catch (error) {
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? error : null,
         msg: SERVER_ERROR.MSG,
       });
     }

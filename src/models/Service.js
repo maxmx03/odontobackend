@@ -1,7 +1,7 @@
 'use strict';
 const { Model, DataTypes } = require('sequelize');
 
- class Service extends Model {
+class Service extends Model {
   static init(sequelize) {
     super.init(
       {
@@ -15,7 +15,17 @@ const { Model, DataTypes } = require('sequelize');
     );
   }
 
-  static associate(models) {}
-};
+  static associate(models) {
+    this.belongsTo(models.Student, {
+      foreignKey: 'student_id',
+      as: 'students',
+    });
+
+    this.belongsTo(models.User, {
+      foreignKey: 'user_id',
+      as: 'users',
+    });
+  }
+}
 
 module.exports = Service;

@@ -19,10 +19,10 @@ class User extends Model {
   }
 
   static associate(models) {
-    this.belongsToMany(models.Student, {
-      through: models.Service,
-      as: 'services',
-    });
+    // this.belongsToMany(models.Student, {
+    //   through: models.Service,
+    //   as: 'students',
+    // });
   }
 }
 

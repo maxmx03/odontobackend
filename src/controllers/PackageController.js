@@ -1,6 +1,7 @@
 const Package = require('../models/Package');
 const Student = require('../models/Student');
 const { SUCCESS, SERVER_ERROR } = require('../constants/code');
+const Validator = require('../utils/validators/Validator');
 
 class PackageController {
   static getAll(req, res) {
@@ -37,8 +38,9 @@ class PackageController {
           packages,
         });
       })
-      .catch(() => {
+      .catch((error) => {
         res.status(SERVER_ERROR.STATUS).json({
+          error: Validator.isDevelopmentEnv() ? error : null,
           msg: SERVER_ERROR.MSG,
         });
       });
@@ -51,8 +53,9 @@ class PackageController {
           msg: SUCCESS.MSG,
         });
       })
-      .catch(() => {
+      .catch((error) => {
         res.status(SERVER_ERROR.STATUS).json({
+          error: Validator.isDevelopmentEnv() ? error : null,
           msg: SERVER_ERROR.MSG,
         });
       });
@@ -78,8 +81,9 @@ class PackageController {
           msg: SUCCESS.MSG,
         });
       })
-      .catch(() => {
+      .catch((error) => {
         res.status(SERVER_ERROR.STATUS).json({
+          error: Validator.isDevelopmentEnv() ? error : null,
           msg: SERVER_ERROR.MSG,
         });
       });
@@ -103,8 +107,9 @@ class PackageController {
           msg: SUCCESS.MSG,
         });
       })
-      .catch(() => {
+      .catch((error) => {
         res.status(SERVER_ERROR.STATUS).json({
+          error: Validator.isDevelopmentEnv() ? error : null,
           msg: SERVER_ERROR.MSG,
         });
       });
@@ -123,8 +128,9 @@ class PackageController {
           msg: SUCCESS.MSG,
         });
       })
-      .catch(() => {
+      .catch((error) => {
         res.status(SERVER_ERROR.STATUS).json({
+          error: Validator.isDevelopmentEnv() ? error : null,
           msg: SERVER_ERROR.MSG,
         });
       });

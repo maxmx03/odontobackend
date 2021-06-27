@@ -1,7 +1,7 @@
 const rateLimit = require('express-rate-limit');
 
 class LimiterMiddleware {
- static request() {
+  static request() {
     return rateLimit({
       windowMs: 60 * 60 * 1000,
       max: 50,

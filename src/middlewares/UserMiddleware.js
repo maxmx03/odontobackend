@@ -27,10 +27,12 @@ class UserMiddleware {
       }
 
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? 'Validator error' : null,
         msg: SERVER_ERROR.MSG,
       });
     } catch (error) {
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? error : null,
         msg: SERVER_ERROR.MSG,
       });
     }
@@ -59,10 +61,12 @@ class UserMiddleware {
       }
 
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? 'Validator error' : null,
         msg: SERVER_ERROR.MSG,
       });
     } catch (error) {
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? error : null,
         msg: SERVER_ERROR.MSG,
       });
     }
@@ -84,10 +88,12 @@ class UserMiddleware {
       }
 
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? 'Validator error' : null,
         msg: SERVER_ERROR.MSG,
       });
     } catch (error) {
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? error : null,
         msg: SERVER_ERROR.MSG,
       });
     }
@@ -112,10 +118,12 @@ class UserMiddleware {
       }
 
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? 'Validator error' : null,
         msg: SERVER_ERROR.MSG,
       });
     } catch (error) {
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? error : null,
         msg: SERVER_ERROR.MSG,
       });
     }
@@ -136,10 +144,12 @@ class UserMiddleware {
       }
 
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? 'Validator error' : null,
         msg: SERVER_ERROR.MSG,
       });
     } catch (error) {
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? error : null,
         msg: SERVER_ERROR.MSG,
       });
     }

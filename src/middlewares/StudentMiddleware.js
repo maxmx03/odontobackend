@@ -32,10 +32,12 @@ class UserMiddleware {
       }
 
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? 'Validator error' : null,
         msg: SERVER_ERROR.MSG,
       });
     } catch (error) {
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? error : null,
         msg: SERVER_ERROR.MSG,
       });
     }
@@ -68,10 +70,12 @@ class UserMiddleware {
       }
 
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? 'Validator error' : null,
         msg: SERVER_ERROR.MSG,
       });
     } catch (error) {
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? error : null,
         msg: SERVER_ERROR.MSG,
       });
     }
@@ -86,17 +90,22 @@ class UserMiddleware {
         studentId: Validator.clearHTML(studentId),
       };
 
-      if (Validator.isEmail(student.email) && Validator.isNotEmpty(student.studentId)) {
+      if (
+        Validator.isEmail(student.email) &&
+        Validator.isNotEmpty(student.studentId)
+      ) {
         req.student = student;
 
         return next();
       }
 
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? 'Validator error' : null,
         msg: SERVER_ERROR.MSG,
       });
     } catch (error) {
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? error : null,
         msg: SERVER_ERROR.MSG,
       });
     }
@@ -121,10 +130,12 @@ class UserMiddleware {
       }
 
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? 'Validator error' : null,
         msg: SERVER_ERROR.MSG,
       });
     } catch (error) {
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? error : null,
         msg: SERVER_ERROR.MSG,
       });
     }
@@ -145,10 +156,12 @@ class UserMiddleware {
       }
 
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? 'Validator error' : null,
         msg: SERVER_ERROR.MSG,
       });
     } catch (error) {
       res.status(SERVER_ERROR.STATUS).json({
+        error: Validator.isDevelopmentEnv() ? error : null,
         msg: SERVER_ERROR.MSG,
       });
     }

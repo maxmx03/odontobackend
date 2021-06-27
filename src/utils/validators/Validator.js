@@ -94,6 +94,10 @@ class Validator {
   static validateUserAccount(password, user) {
     return bcrypt.compareSync(password, user.password);
   }
+
+  static isDevelopmentEnv() {
+    return process.env.NODE_ENV !== 'production';
+  }
 }
 
 module.exports = Validator;
