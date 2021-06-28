@@ -154,6 +154,7 @@ class AuthMiddleware {
         Validator.isType(token.type) &&
         (token.type === 'user' || token.type === 'admin')
       ) {
+        req.auth = token;
         return next();
       }
 

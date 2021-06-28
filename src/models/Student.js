@@ -27,10 +27,7 @@ class Student extends Model {
       as: 'packages',
     });
 
-    // this.belongsToMany(models.User, {
-    //   through: models.Service,
-    //   as: 'users',
-    // });
+    this.hasMany(models.Service);
   }
 
   static async createPackage({ studentId, description, validity, status }) {
