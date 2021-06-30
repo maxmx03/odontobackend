@@ -98,6 +98,10 @@ class Validator {
   static isDevelopmentEnv() {
     return process.env.NODE_ENV !== 'production';
   }
+
+  static areEqual(value, valueToCompare) {
+    return value === valueToCompare;
+  }
 }
 
 module.exports = Validator;

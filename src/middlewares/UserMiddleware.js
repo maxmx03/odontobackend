@@ -4,13 +4,15 @@ const { SERVER_ERROR } = require('../constants/code');
 class UserMiddleware {
   static create(req, res, next) {
     try {
-      const { firstName, lastName, email, password, type } = req.body;
+      const { firstName, lastName, email, password, confirmPassword, type } =
+        req.body;
 
       const user = {
         firstName: Validator.clearHTML(firstName).toLowerCase(),
         lastName: Validator.clearHTML(lastName).toLowerCase(),
         email: Validator.clearHTML(email),
         password: Validator.clearHTML(password),
+        confirmPassword: Validator.clearHTML(confirmPassword),
         type: Validator.clearHTML(type).toLowerCase(),
       };
 
@@ -19,6 +21,8 @@ class UserMiddleware {
         Validator.isNotEmpty(user.lastName) &&
         Validator.isEmail(user.email) &&
         Validator.isPassword(user.password) &&
+        Validator.isPassword(user.confirmPassword) &&
+        Validator.areEqual(user.password, user.confirmPassword) &&
         Validator.isNotEmpty(user.type)
       ) {
         req.user = user;

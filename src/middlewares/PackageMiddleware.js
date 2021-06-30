@@ -1,22 +1,41 @@
 const Validator = require('../utils/validators/Validator');
+const Student = require('../models/Student');
 const { SERVER_ERROR } = require('../constants/code');
 
 class PackageMiddleware {
-  static create(req, res, next) {
+  static async create(req, res, next) {
     try {
-      const { studentId, description, validity, status } = req.body;
+      const {
+        studentId,
+        description,
+        validity,
+        status,
+        password,
+        confirmPassword,
+      } = req.body;
 
       const studentPackage = {
         studentId: Validator.clearHTML(studentId),
         description: Validator.clearHTML(description).toLowerCase(),
         validity: Validator.clearHTML(validity),
         status: Validator.clearHTML(status).toLowerCase(),
+        password: Validator.clearHTML(password),
+        confirmPassword: Validator.clearHTML(confirmPassword),
       };
+
+      const student = await Student.findByPk(studentId);
 
       if (
         Validator.isNotEmpty(studentPackage.studentId) &&
         Validator.isNotEmpty(studentPackage.description) &&
         Validator.isDate(studentPackage.validity) &&
+        Validator.isPassword(studentPackage.password) &&
+        Validator.isPassword(studentPackage.confirmPassword) &&
+        Validator.areEqual(
+          studentPackage.password,
+          studentPackage.confirmPassword
+        ) &&
+        Validator.validateUserAccount(studentPackage.password, student) &&
         Validator.isStatus(studentPackage.status)
       ) {
         req.studentPackage = studentPackage;
