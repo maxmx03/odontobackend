@@ -111,10 +111,7 @@ class AuthMiddleware {
 
   static isAdmin(req, res, next) {
     try {
-      if (
-        Validator.isDevelopmentEnv() ||
-        process.env.CREATE_FIRST_USER === 'true'
-      ) {
+      if (process.env.CREATE_FIRST_USER === 'true') {
         return next();
       }
 
@@ -142,10 +139,6 @@ class AuthMiddleware {
 
   static isUser(req, res, next) {
     try {
-      if (Validator.isDevelopmentEnv()) {
-        return next();
-      }
-
       const { authorization } = req.headers;
 
       const token = WebToken.verify(authorization);
