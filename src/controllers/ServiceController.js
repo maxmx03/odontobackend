@@ -9,11 +9,11 @@ class ServiceController {
       order: [['id', 'DESC']],
       include: [
         {
-          association: 'users',
+          association: 'user',
           attributes: ['firstName', 'lastName', 'type', 'id', 'createdAt'],
         },
         {
-          association: 'students',
+          association: 'student',
           attributes: ['firstName', 'lastName', 'cpf', 'id', 'createdAt'],
         },
       ],

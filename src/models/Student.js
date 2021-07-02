@@ -23,11 +23,9 @@ class Student extends Model {
 
   static associate(models) {
     this.hasMany(models.Package, {
-      foreignKey: 'student_id',
+      foreignKey: 'studentId',
       as: 'packages',
     });
-
-    this.hasMany(models.Service);
   }
 
   static async createPackage({ studentId, description, validity, status }) {
@@ -37,7 +35,7 @@ class Student extends Model {
     student.save();
 
     return student.createPackage({
-      student_id: studentId,
+      studentId,
       description,
       validity,
       status,

@@ -12,9 +12,11 @@ class ServiceMiddleware {
 
       const student = await Student.findByPk(studentId);
 
+      console.log(req.auth);
+
       Service.create({
-        student_id: studentId,
-        user_id: userId,
+        studentId,
+        userId,
         operation: 'Criar Pacote',
         description: `${firstName} ${lastName} criou um novo pacote para o aluno(a) ${student.firstName} ${student.lastName}`,
       })
@@ -43,8 +45,8 @@ class ServiceMiddleware {
       const student = await Student.findByPk(studentId);
 
       Service.create({
-        student_id: studentId,
-        user_id: userId,
+        studentId,
+        userId,
         operation: 'Atualizar Pacote Perfil',
         description: `${firstName} ${lastName} atualizou o perfil do pacote do aluno(a) ${student.firstName} ${student.lastName}`,
       })
@@ -73,8 +75,8 @@ class ServiceMiddleware {
       const student = await Student.findByPk(studentId);
 
       Service.create({
-        student_id: studentId,
-        user_id: userId,
+        studentId,
+        userId,
         operation: 'Atualizar Pacote Código',
         description: `${firstName} ${lastName} atualizou o código do pacote do aluno(a) ${student.firstName} ${student.lastName}`,
       })
@@ -103,8 +105,8 @@ class ServiceMiddleware {
       const student = await Student.findByPk(studentId);
 
       Service.create({
-        student_id: studentId,
-        user_id: userId,
+        studentId,
+        userId,
         operation: 'Atualizar Pacote Código',
         description: `${firstName} ${lastName} deletou o pacote do aluno(a) ${student.firstName} ${student.lastName}`,
       })

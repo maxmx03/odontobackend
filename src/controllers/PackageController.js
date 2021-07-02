@@ -8,7 +8,7 @@ class PackageController {
     Package.findAll({
       attributes: [
         'id',
-        'student_id',
+        'studentId',
         'description',
         'status',
         'code',

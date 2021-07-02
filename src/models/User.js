@@ -18,9 +18,7 @@ class User extends Model {
     );
   }
 
-  static associate(models) {
-    this.hasMany(models.Service);
-  }
+  static associate(models) {}
 }
 
 module.exports = User;
