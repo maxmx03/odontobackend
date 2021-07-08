@@ -20,7 +20,7 @@ class Package extends Model {
   static associate(models) {
     this.belongsTo(models.Student, {
       foreignKey: 'studentId',
-      as: 'students',
+      as: 'student',
     });
   }
 };

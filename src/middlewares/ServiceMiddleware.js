@@ -12,8 +12,6 @@ class ServiceMiddleware {
 
       const student = await Student.findByPk(studentId);
 
-      console.log(req.auth);
-
       Service.create({
         studentId,
         userId,

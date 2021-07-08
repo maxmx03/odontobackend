@@ -17,7 +17,7 @@ class PackageController {
         'updatedAt',
       ],
       include: {
-        association: 'students',
+        association: 'student',
         attributes: [
           'id',
           'firstName',
