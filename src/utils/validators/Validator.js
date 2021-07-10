@@ -17,6 +17,12 @@ class Validator {
     return toFilter.replace(filter, '');
   }
 
+  static normalizeEmail(email) {
+    const normalizedEmail = validator.normalizeEmail(email);
+
+    return normalizedEmail;
+  }
+
   static isShift(value) {
     return /^morning$|^afternoon$|^night$/.test(value);
   }
@@ -72,9 +78,7 @@ class Validator {
   }
 
   static isEmail(email) {
-    const normalizedEmail = validator.normalizeEmail(email);
-
-    return validator.isEmail(normalizedEmail);
+    return validator.isEmail(email);
   }
 
   static isPassword(password) {

@@ -10,7 +10,7 @@ class UserMiddleware {
       const student = {
         firstName: Validator.clearHTML(firstName).toLowerCase(),
         lastName: Validator.clearHTML(lastName).toLowerCase(),
-        email: Validator.clearHTML(email),
+        email: Validator.normalizeEmail(Validator.clearHTML(email)),
         password: Validator.clearHTML(password),
         cpf: Validator.clearHTML(cpf),
         phone: Validator.clearHTML(phone),

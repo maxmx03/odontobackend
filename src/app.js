@@ -9,7 +9,7 @@ const routes = require('./routes');
 
 const app = express();
 const corsOptions = {
-  origin: process.env.CORS_ORIGIN || '*',
+  origin: process.env.CORS_ORIGIN,
   optionsSuccessStatus: 200,
   methods: 'GET, POST, PATCH, DELETE',
 };
@@ -21,6 +21,16 @@ app.use(helmet());
 app.use(compression());
 app.use(express.json());
 
-app.use(routes);
+function slowDown(req, res, next) {
+  if (process.env.NODE_ENV === 'development') {
+    return setTimeout(() => {
+      next();
+    }, 5000);
+  }
+
+  return next();
+}
+
+app.use(slowDown, routes);
 
 module.exports = app;
