@@ -29,8 +29,8 @@ class PackageMiddleware {
         Validator.isNotEmpty(studentPackage.studentId) &&
         Validator.isNotEmpty(studentPackage.description) &&
         Validator.isDate(studentPackage.validity) &&
-        Validator.isPassword(studentPackage.password) &&
-        Validator.isPassword(studentPackage.confirmPassword) &&
+        Validator.isStudentPassword(studentPackage.password) &&
+        Validator.isStudentPassword(studentPackage.confirmPassword) &&
         Validator.areEqual(
           studentPackage.password,
           studentPackage.confirmPassword

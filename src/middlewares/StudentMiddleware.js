@@ -21,7 +21,7 @@ class UserMiddleware {
         Validator.isNotEmpty(student.firstName) &&
         Validator.isNotEmpty(student.lastName) &&
         Validator.isEmail(student.email) &&
-        Validator.isPassword(student.password) &&
+        Validator.isStudentPassword(student.password) &&
         Validator.isCPF(student.cpf) &&
         Validator.isNotEmpty(student.phone) &&
         Validator.isShift(student.shift)
@@ -121,7 +121,7 @@ class UserMiddleware {
       };
 
       if (
-        Validator.isPassword(student.password) &&
+        Validator.isStudentPassword(student.password) &&
         Validator.isNotEmpty(student.studentId)
       ) {
         req.student = student;

@@ -16,7 +16,7 @@ class AuthMiddleware {
 
       if (
         !Validator.isEmail(auth.email) ||
-        !Validator.isPassword(auth.password)
+        !Validator.isUserPassword(auth.password)
       ) {
         return res.status(SERVER_ERROR.STATUS).json({
           error: Validator.isDevelopmentEnv() ? 'Validator error' : null,
@@ -77,7 +77,7 @@ class AuthMiddleware {
         email: Validator.clearHTML(email),
       };
 
-      if (Validator.isPassword(raw) && Validator.isEmail(auth.email)) {
+      if (Validator.isUserPassword(raw) && Validator.isEmail(auth.email)) {
         await User.update(
           {
             password,

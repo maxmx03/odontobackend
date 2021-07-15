@@ -45,11 +45,11 @@ describe('Validator', () => {
     expect(Validator.isEmail('test@')).toBe(false);
   });
 
-  it('isPassword should verify if is password, return boolean', () => {
+  it('isUserPassword should verify if is password, return boolean', () => {
     const { raw } = GeneratorPassword.generate();
 
-    expect(Validator.isPassword(raw)).toBe(true);
-    expect(Validator.isPassword('123456789')).toBe(false);
+    expect(Validator.isUserPassword(raw)).toBe(true);
+    expect(Validator.isUserPassword('123456789')).toBe(false);
   });
 
   it('validateUserAccount should verify user password, return boolean', () => {

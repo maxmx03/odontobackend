@@ -81,18 +81,21 @@ class Validator {
     return validator.isEmail(email);
   }
 
-  static isPassword(password) {
-    const hasMinEightCharacter = /^.{8,}$/.test(password);
-    const hasNumber = /[0-9]/.test(password);
-    const hasSpecialCharacter = /[!@#$%&*^~+?(){}]/.test(password);
-    const hasUpperCaseCharacter = /[A-Z]/.test(password);
+  static isUserPassword(password) {
+    const minLength = /^.{8,}$/.test(password);
+    const minNum = /[0-9]/.test(password);
+    const specialChar = /[!@#$%&*^~+?(){}]/.test(password);
+    const upperCaseChar = /[A-Z]/.test(password);
 
-    return (
-      hasMinEightCharacter &&
-      hasNumber &&
-      hasSpecialCharacter &&
-      hasUpperCaseCharacter
-    );
+    return minLength && minNum && specialChar && upperCaseChar;
+  }
+
+  static isStudentPassword(password) {
+    const minLength = /^.{5,}$/.test(password);
+    const minChar = /[a-z]/gi.test(password);
+    const minNum = /[0-9]/.test(password);
+
+    return minLength && minChar && minNum;
   }
 
   static validateUserAccount(password, user) {

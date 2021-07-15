@@ -22,11 +22,11 @@ app.use(compression());
 app.use(express.json());
 
 function slowDown(req, res, next) {
-  if (process.env.NODE_ENV === 'development') {
-    return setTimeout(() => {
-      next();
-    }, 5000);
-  }
+  // if (process.env.NODE_ENV === 'development') {
+  //   return setTimeout(() => {
+  //     next();
+  //   }, 5000);
+  // }
 
   return next();
 }
