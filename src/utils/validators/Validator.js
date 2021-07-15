@@ -81,6 +81,12 @@ class Validator {
     return validator.isEmail(email);
   }
 
+  static isPhone(phone) {
+    const regex = /[(]+[0-9]+[)]+[\s]+[0-9]+[-]+[0-9]+/g;
+
+    return regex.test(phone);
+  }
+
   static isUserPassword(password) {
     const minLength = /^.{8,}$/.test(password);
     const minNum = /[0-9]/.test(password);
