@@ -13,7 +13,7 @@ class UserMiddleware {
         email: Validator.normalizeEmail(Validator.clearHTML(email)),
         password: Validator.clearHTML(password),
         cpf: Validator.clearHTML(cpf),
-        phone: Validator.clearHTML(phone),
+        phone: Validator.normalizedPhone(Validator.clearHTML(phone)),
         shift: Validator.clearHTML(shift).toLowerCase(),
       };
 
@@ -52,7 +52,7 @@ class UserMiddleware {
         lastName: Validator.clearHTML(lastName),
         shift: Validator.clearHTML(shift),
         cpf: Validator.clearHTML(cpf),
-        phone: Validator.clearHTML(phone),
+        phone: Validator.normalizedPhone(Validator.clearHTML(phone)),
         studentId: Validator.clearHTML(studentId),
       };
 

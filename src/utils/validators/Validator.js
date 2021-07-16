@@ -10,19 +10,6 @@ class Validator {
     return !!value;
   }
 
-  static clearHTML(value) {
-    const filter = new RegExp('(<[a-z0-9]+>)|(</[a-z0-9]+>)|([</>])', 'gi');
-    const toFilter = value + '';
-
-    return toFilter.replace(filter, '');
-  }
-
-  static normalizeEmail(email) {
-    const normalizedEmail = validator.normalizeEmail(email);
-
-    return normalizedEmail;
-  }
-
   static isShift(value) {
     return /^morning$|^afternoon$|^night$/.test(value);
   }
@@ -116,6 +103,13 @@ class Validator {
     return value === valueToCompare;
   }
 
+  static clearHTML(value) {
+    const filter = new RegExp('(<[a-z0-9]+>)|(</[a-z0-9]+>)|([</>])', 'gi');
+    const toFilter = value + '';
+
+    return toFilter.replace(filter, '');
+  }
+
   static toTitleCase(string = '') {
     const regex = /^[a-z]{0,1}|\s\w/gi;
 
@@ -128,6 +122,18 @@ class Validator {
     }
 
     return '';
+  }
+
+  static normalizeEmail(email) {
+    const normalizedEmail = validator.normalizeEmail(email);
+
+    return normalizedEmail;
+  }
+
+  static normalizedPhone(phone = '') {
+    const regex = /[_]/g;
+
+    return phone.replace(regex, '');
   }
 }
 
