@@ -56,6 +56,13 @@ class AuthMiddleware {
 
       const token = WebToken.verify(authorization);
 
+      if (token.type === 'disabled') {
+        return res.status(SERVER_ERROR.STATUS).json({
+          error: Validator.isDevelopmentEnv() ? 'User is disabled' : null,
+          msg: SERVER_ERROR.MSG,
+        });
+      }
+
       req.auth = token;
 
       return next();

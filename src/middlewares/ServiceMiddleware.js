@@ -1,6 +1,5 @@
 const Service = require('../models/Service');
 const Student = require('../models/Student');
-const User = require('../models/User');
 const Validator = require('../utils/validators/Validator');
 const { SERVER_ERROR } = require('../constants/code');
 
@@ -16,7 +15,11 @@ class ServiceMiddleware {
         studentId,
         userId,
         operation: 'Criar Pacote',
-        description: `${firstName} ${lastName} criou um novo pacote para o aluno(a) ${student.firstName} ${student.lastName}`,
+        description: `${Validator.toTitleCase(
+          firstName + ' ' + lastName
+        )} criou um novo pacote para o aluno(a) ${Validator.toTitleCase(
+          student.firstName + ' ' + student.lastName
+        )}`,
       })
         .then(() => {
           next();
@@ -46,7 +49,11 @@ class ServiceMiddleware {
         studentId,
         userId,
         operation: 'Atualizar Pacote Perfil',
-        description: `${firstName} ${lastName} atualizou o perfil do pacote do aluno(a) ${student.firstName} ${student.lastName}`,
+        description: `${Validator.toTitleCase(
+          firstName + ' ' + lastName
+        )} atualizou o perfil do pacote do aluno(a) ${Validator.toTitleCase(
+          student.firstName + ' ' + student.lastName
+        )}`,
       })
         .then(() => {
           next();
@@ -76,7 +83,11 @@ class ServiceMiddleware {
         studentId,
         userId,
         operation: 'Atualizar Pacote Código',
-        description: `${firstName} ${lastName} atualizou o código do pacote do aluno(a) ${student.firstName} ${student.lastName}`,
+        description: `${Validator.toTitleCase(
+          firstName + ' ' + lastName
+        )} atualizou o código do pacote do aluno(a) ${Validator.toTitleCase(
+          student.firstName + ' ' + student.lastName
+        )}`,
       })
         .then(() => {
           next();
@@ -106,7 +117,11 @@ class ServiceMiddleware {
         studentId,
         userId,
         operation: 'Atualizar Pacote Código',
-        description: `${firstName} ${lastName} deletou o pacote do aluno(a) ${student.firstName} ${student.lastName}`,
+        description: `${Validator.toTitleCase(
+          firstName + ' ' + lastName
+        )} deletou o pacote do aluno(a) ${Validator.toTitleCase(
+          student.firstName + ' ' + student.lastName
+        )}`,
       })
         .then(() => {
           next();

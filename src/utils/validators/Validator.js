@@ -115,6 +115,20 @@ class Validator {
   static areEqual(value, valueToCompare) {
     return value === valueToCompare;
   }
+
+  static toTitleCase(string = '') {
+    const regex = /^[a-z]{0,1}|\s\w/gi;
+
+    if (typeof string === 'string') {
+      string.match(regex).forEach((char) => {
+        string = string.replace(char, char.toUpperCase());
+      });
+
+      return string;
+    }
+
+    return '';
+  }
 }
 
 module.exports = Validator;

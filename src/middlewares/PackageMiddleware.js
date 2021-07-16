@@ -125,7 +125,8 @@ class PackageMiddleware {
 
   static delete(req, res, next) {
     try {
-      const { packageId, studentId } = req.params;
+      const { packageId } = req.params;
+      const { studentId } = req.body;
 
       const studentPackage = {
         packageId: Validator.clearHTML(packageId),
