@@ -1,6 +1,8 @@
 'use strict';
 const { Model, DataTypes } = require('sequelize');
 
+const Package = require('./Package');
+
 class Student extends Model {
   static init(sequelize) {
     super.init(
@@ -39,6 +41,19 @@ class Student extends Model {
       description,
       validity,
       status,
+    });
+  }
+
+  static async deletePackage({ studentId, packageId }) {
+    const student = await this.findByPk(studentId);
+    const quantity = await student.countPackages();
+    student.qtPackage = quantity - 1;
+    student.save();
+
+    return Package.destroy({
+      where: {
+        id: packageId,
+      },
     });
   }
 }

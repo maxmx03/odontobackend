@@ -116,13 +116,7 @@ class PackageController {
   }
 
   static delete(req, res) {
-    const { packageId } = req.studentPackage;
-
-    Package.destroy({
-      where: {
-        id: packageId,
-      },
-    })
+    Student.deletePackage(req.studentPackage)
       .then(() => {
         res.status(SUCCESS.STATUS).json({
           msg: SUCCESS.MSG,
