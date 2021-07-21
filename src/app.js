@@ -21,16 +21,6 @@ app.use(helmet());
 app.use(compression());
 app.use(express.json());
 
-function slowDown(req, res, next) {
-  // if (process.env.NODE_ENV === 'development') {
-  //   return setTimeout(() => {
-  //     next();
-  //   }, 5000);
-  // }
-
-  return next();
-}
-
-app.use(slowDown, routes);
+app.use(routes);
 
 module.exports = app;
