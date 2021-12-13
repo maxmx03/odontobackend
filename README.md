@@ -23,42 +23,42 @@
 # API Routes Postman
 ### {{home}} = http://localhost:8080
 1. User
- 1. {{home}}/user/find/users
- 2. {{home}}/user/create/account
- 3. {{home}}/user/update/email
- 4. {{home}}/user/update/password
- 5. {{home}}/user/update/profile
- 6. {{home}}/user/delete/account/2
+   1. {{home}}/user/find/users
+   2. {{home}}/user/create/account
+   3. {{home}}/user/update/email
+   4. {{home}}/user/update/password
+   5. {{home}}/user/update/profile
+   6. {{home}}/user/delete/account/2
 2. Packages
- 1. {{home}}/package/find/packages
- 2. {{home}}/package/create/student/package
- 3. {{home}}/package/update/student/package/code
- 4. {{home}}/package/update/student/package/profile
- 5. {{home}}/package/delete/student/package/1
+   1. {{home}}/package/find/packages
+   2. {{home}}/package/create/student/package
+   3. {{home}}/package/update/student/package/code
+   4. {{home}}/package/update/student/package/profile
+   5. {{home}}/package/delete/student/package/1
 3. Student
- 1. {{home}}/student/find/students
- 2. {{home}}/student/create/account
- 3. {{home}}/student/update/email
- 4. {{home}}/student/update/password
- 5. {{home}}/student/update/profile
- 6. {{home}}/student/delete/account/7
+   1. {{home}}/student/find/students
+   2. {{home}}/student/create/account
+   3. {{home}}/student/update/email
+   4. {{home}}/student/update/password
+   5. {{home}}/student/update/profile
+   6. {{home}}/student/delete/account/7
 4. Auth
- 1. {{home}}/auth/login/user
- 2. {{home}}/auth/login/user/logged
- 3. {{home}}/auth/login/forgetPassword
+   1. {{home}}/auth/login/user
+   2. {{home}}/auth/login/user/logged
+   3. {{home}}/auth/login/forgetPassword
 5. Service
- 1. {{home}}/service/find/services
+   1. {{home}}/service/find/services
 
 # PROJECT STRUCTURE
 1. src
- 1. Routes - Routing
- 2. Middlewares - Filter
- 3. Controllers - Data manipulation
- 4. Models - Database Table
- 5. Database - Create Database & Create Table & Insert Data to Table
- 6. Config - Sequelize Config
- 7. Constants
- 8. Utils - Custom Functions - Custom Classes - etc...
+   1. Routes - Routing
+   2. Middlewares - Filter
+   3. Controllers - Data manipulation
+   4. Models - Database Table
+   5. Database - Create Database & Create Table & Insert Data to Table
+   6. Config - Sequelize Config
+   7. Constants
+   8. Utils - Custom Functions - Custom Classes - etc...
 
 # Sequelize CLI
  
