@@ -1,3 +1,7 @@
+# ATENÇÃO!
+- O odontofrontend não possue cadastro de usuário, o primeiro usuário deverá ser criado utilizando postman.
+- CREATE_FIRST_USER=true dentro do .env para criar o primeiro usuário
+
 # OPERATIONAL SYSTEM
 - Linux (Ubuntu - distro)
 
