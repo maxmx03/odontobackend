@@ -1,4 +1,5 @@
 # ATENÇÃO!
+- Utilize o docker ou WSL se você estiver no windows
 - O odontofrontend não possue cadastro de usuário, o primeiro usuário deverá ser criado utilizando postman.
 - CREATE_FIRST_USER=true dentro do .env para criar o primeiro usuário
 
