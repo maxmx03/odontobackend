@@ -1,7 +1,7 @@
 # ATENÇÃO!
 
 ## Scripts
-- No package.json a forma de como setar uma variável como mostra abaixo.
+- No package.json mude a forma de como setar uma variável como mostra abaixo.
 - Por padrão está sendo utilizado a do Linux.
 
 ### Linux
