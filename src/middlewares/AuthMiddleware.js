@@ -118,10 +118,6 @@ class AuthMiddleware {
 
   static isAdmin(req, res, next) {
     try {
-      if (process.env.CREATE_FIRST_USER === 'true') {
-        return next();
-      }
-
       const { authorization } = req.headers;
 
       const token = WebToken.verify(authorization);

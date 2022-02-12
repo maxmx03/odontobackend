@@ -4,15 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_ENV=production node ./src/server.js",
-    "dev": "clear && NODE_ENV=development nodemon ./src/server.js",
-    "test": "NODE_ENV=test jest",
-    "migrate": "NODE_ENV=production yarn sequelize-cli db:migrate",
-    "undo-migrate": "NODE_ENV=production yarn sequelize-cli db:migrate:undo:all",
-    "migrate-dev": "NODE_ENV=development yarn sequelize-cli db:migrate",
-    "undo-migrate-dev": "NODE_ENV=development yarn sequelize-cli db:migrate:undo:all",
-    "pretest": "NODE_ENV=test yarn sequelize-cli db:migrate",
-    "posttest": "NODE_ENV=test yarn sequelize-cli db:migrate:undo:all"
+    "start": "node ./src/server.js",
+    "dev": "nodemon ./src/server.js",
+    "migrate": "yarn sequelize-cli db:migrate",
+    "undo-migrate": "yarn sequelize-cli db:migrate:undo:all",
+    "test": "jest"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

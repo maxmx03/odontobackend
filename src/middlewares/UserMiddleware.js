@@ -20,6 +20,7 @@ class UserMiddleware {
         Validator.isNotEmpty(user.firstName) &&
         Validator.isNotEmpty(user.lastName) &&
         Validator.isEmail(user.email) &&
+        Validator.isType(user.type) &&
         Validator.isUserPassword(user.password) &&
         Validator.isUserPassword(user.confirmPassword) &&
         Validator.areEqual(user.password, user.confirmPassword) &&
@@ -57,6 +58,7 @@ class UserMiddleware {
         Validator.isNotEmpty(user.firstName) &&
         Validator.isNotEmpty(user.lastName) &&
         Validator.isNotEmpty(user.type) &&
+        Validator.isType(user.type) &&
         Validator.isNotEmpty(user.userId)
       ) {
         req.user = user;
